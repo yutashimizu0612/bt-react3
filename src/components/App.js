@@ -6,10 +6,12 @@ import Login from '../pages/Login';
 
 function App() {
   return (
-    <Router>
-      <Route exact path="/" component={Register}></Route>
-      <Route exact path="/login" component={Login}></Route>
-    </Router>
+    <div className="content">
+      <Router>
+        <Route exact path="/" component={Register}></Route>
+        <Route exact path="/login" component={Login}></Route>
+      </Router>
+    </div>
   );
 }
 
