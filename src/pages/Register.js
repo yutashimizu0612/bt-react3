@@ -1,12 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import firebase from '../firebase';
 
 const Register = () => {
   const registerUser = e => {
     e.preventDefault();
-    console.log(e.target.user_name.value);
-    console.log(e.target.email.value);
-    console.log(e.target.password.value);
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(
+        e.target.email.value,
+        e.target.password.value
+      );
+    e.target.user_name.value = '';
+    e.target.email.value = '';
+    e.target.password.value = '';
   };
   return (
     <>
