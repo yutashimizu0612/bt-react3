@@ -5,12 +5,23 @@ import firebase from '../firebase';
 const Register = () => {
   const registerUser = e => {
     e.preventDefault();
+    const userName = e.target.user_name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    // firebaseへの新規ユーザ登録処理
     firebase
       .auth()
-      .createUserWithEmailAndPassword(
-        e.target.email.value,
-        e.target.password.value
-      );
+      .createUserWithEmailAndPassword(email, password)
+      .then(function () {
+        const user = firebase.auth().currentUser;
+        user.updateProfile({
+          displayName: userName,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // フォームの値を空にする
     e.target.user_name.value = '';
     e.target.email.value = '';
     e.target.password.value = '';
