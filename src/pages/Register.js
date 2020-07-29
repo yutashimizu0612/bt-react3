@@ -21,6 +21,7 @@ export default class Register extends Component {
   };
   registerUser = e => {
     e.preventDefault();
+    const name = this.state.name;
     // firebaseへの新規ユーザ登録処理
     firebase
       .auth()
@@ -28,7 +29,7 @@ export default class Register extends Component {
       .then(function () {
         const user = firebase.auth().currentUser;
         user.updateProfile({
-          displayName: this.state.name,
+          displayName: name,
         });
       })
       .catch(function (error) {
