@@ -20,6 +20,7 @@ export default class Register extends Component {
     return name && email && password;
   };
   registerUser = e => {
+    e.preventDefault();
     // firebaseへの新規ユーザ登録処理
     firebase
       .auth()
