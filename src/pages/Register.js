@@ -27,6 +27,7 @@ export default class Register extends Component {
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(function () {
+        // email&password登録後にユーザ名を追加更新
         const user = firebase.auth().currentUser;
         user.updateProfile({
           displayName: name,
