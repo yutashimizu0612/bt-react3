@@ -38,6 +38,12 @@ export default class Register extends Component {
     e.target.name.value = '';
     e.target.email.value = '';
     e.target.password.value = '';
+    // stateの値を空にする
+    this.setState({
+      name: '',
+      email: '',
+      password: '',
+    });
   };
 
   render() {
