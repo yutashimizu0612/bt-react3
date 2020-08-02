@@ -1,5 +1,5 @@
 import React from 'react';
-import './Users.css';
+import './Dashboard.css';
 
 const Users = () => {
   return (
