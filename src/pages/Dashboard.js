@@ -1,36 +1,37 @@
 import React from 'react';
 import './Dashboard.css';
+import { connect } from 'react-redux';
 
-const Users = () => {
+const Users = props => {
+  const { loggedInUser, users } = props;
   return (
     <>
       <div className="status">
-        <span>testさんようこそ！</span>
-        <span>残高：500</span>
+        <span>{loggedInUser.name}さんようこそ！</span>
+        {/* todo：ログインしているユーザの所持金 */}
+        <span>残高：</span>
       </div>
       <h2 className="title is-3 my-6 has-text-centered">ユーザ一覧</h2>
       <div className="users">
         <h3 className="title is-5">ユーザ名</h3>
         <ul className="users-list">
-          <li className="user-item">
-            <p className="user-item__name">aaaaaa</p>
-            <button class="button is-primary mx-2">walletを見る</button>
-            <button class="button is-primary">送る</button>
-          </li>
-          <li className="user-item">
-            <p className="user-item__name">bbbbbb</p>
-            <button class="button is-primary mx-2">walletを見る</button>
-            <button class="button is-primary">送る</button>
-          </li>
-          <li className="user-item">
-            <p className="user-item__name">cccccc</p>
-            <button class="button is-primary mx-2">walletを見る</button>
-            <button class="button is-primary">送る</button>
-          </li>
+          {users &&
+            users.map(user => (
+              <li className="user-item">
+                <p className="user-item__name">{user.name}</p>
+                <button class="button is-primary mx-2">walletを見る</button>
+                <button class="button is-primary">送る</button>
+              </li>
+            ))}
         </ul>
       </div>
     </>
   );
 };
 
-export default Users;
+const mapStateToProps = state => ({
+  loggedInUser: state.auth,
+  users: state.user.users,
+});
+
+export default connect(mapStateToProps, null)(Users);
