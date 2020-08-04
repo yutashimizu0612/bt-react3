@@ -6,7 +6,7 @@ import { inputValue, emptyValue } from '../actions/auth.js';
 
 const Register = props => {
   const { auth } = props;
-  const { inputValue } = props;
+  const { inputValue, emptyValue } = props;
 
   const isFormValid = () => {
     const { name, email, password } = auth;
