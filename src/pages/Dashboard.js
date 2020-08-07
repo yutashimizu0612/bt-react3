@@ -19,8 +19,8 @@ const Users = props => {
             users.map(user => (
               <li className="user-item">
                 <p className="user-item__name">{user.name}</p>
-                <button class="button is-primary mx-2">walletを見る</button>
-                <button class="button is-primary">送る</button>
+                <button className="button is-primary mx-2">walletを見る</button>
+                <button className="button is-primary">送る</button>
               </li>
             ))}
         </ul>
