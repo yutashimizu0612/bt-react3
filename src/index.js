@@ -4,6 +4,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import firebase, { FIREBASE_CONFIG } from './firebase';
+import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase';
 import reducer from './reducers';
 
 import './index.css';
@@ -12,11 +14,22 @@ import 'bulma/css/bulma.css';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(
+  reducer,
+  composeWithDevTools(applyMiddleware(thunk.withExtraArgument({ getFirebase })))
+);
+
+const rrfProps = {
+  firebase,
+  config: FIREBASE_CONFIG,
+  dispatch: store.dispatch,
+};
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ReactReduxFirebaseProvider {...rrfProps}>
+      <App />
+    </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById('root')
 );
