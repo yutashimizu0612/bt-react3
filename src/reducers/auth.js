@@ -1,9 +1,15 @@
-import { INPUT_VALUE, EMPTY_VALUE } from '../actions/auth.js';
+import {
+  INPUT_VALUE,
+  EMPTY_VALUE,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+} from '../actions/auth.js';
 
 const initialState = {
   name: '',
   email: '',
   password: '',
+  authError: null,
 };
 
 const auth = (state = initialState, action) => {
@@ -19,6 +25,18 @@ const auth = (state = initialState, action) => {
         name: '',
         email: '',
         password: '',
+      };
+    case LOGIN_SUCCESS:
+      console.log('login success');
+      return {
+        ...state,
+        authError: null,
+      };
+    case LOGIN_ERROR:
+      console.log('login error');
+      return {
+        ...state,
+        authError: 'Login Error',
       };
     default:
       return state;
