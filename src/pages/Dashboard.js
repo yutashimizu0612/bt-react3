@@ -3,7 +3,7 @@ import './Dashboard.css';
 import { connect } from 'react-redux';
 import Logout from '../components/Logout';
 
-const Users = props => {
+const Dashboard = props => {
   const { users } = props;
   return (
     <>
@@ -37,4 +37,4 @@ const mapStateToProps = state => ({
   users: state.user.users,
 });
 
-export default connect(mapStateToProps, null)(Users);
+export default connect(mapStateToProps, null)(Dashboard);
