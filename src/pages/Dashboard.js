@@ -1,13 +1,17 @@
 import React from 'react';
 import './Dashboard.css';
 import { connect } from 'react-redux';
+import Logout from '../components/Logout';
 
 const Users = props => {
-  const { loggedInUser, users } = props;
+  const { users } = props;
   return (
     <>
+      <div className="mb-6 has-text-right">
+        <Logout />
+      </div>
       <div className="status">
-        <span>{loggedInUser.name}さんようこそ！</span>
+        <span>さんようこそ！</span>
         {/* todo：ログインしているユーザの所持金 */}
         <span>残高：</span>
       </div>
@@ -30,7 +34,6 @@ const Users = props => {
 };
 
 const mapStateToProps = state => ({
-  loggedInUser: state.auth,
   users: state.user.users,
 });
 
