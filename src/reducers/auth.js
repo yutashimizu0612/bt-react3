@@ -1,16 +1,33 @@
-import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS } from '../actions/auth.js';
+import {
+  INPUT_VALUE,
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+  LOGOUT_SUCCESS,
+} from '../actions/auth.js';
 
 const initialState = {
-  authError: null,
+  name: '',
+  email: '',
+  password: '',
+  isLoggedIn: null,
+  user: null,
+  error: '',
 };
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
+    case INPUT_VALUE:
+      console.log(action);
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
     case LOGIN_SUCCESS:
       console.log('login success');
       return {
         ...state,
-        authError: null,
+        isLoggedIn: true,
+        user: action.user,
       };
     case LOGIN_ERROR:
       console.log('login error');
