@@ -31,15 +31,15 @@ export const signUp = (name, email, password) => {
   };
 };
 
-export const login = credentials => {
+export const login = (email, password) => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
 
     firebase
       .auth()
-      .signInWithEmailAndPassword(credentials.email, credentials.password)
-      .then(() => {
-        dispatch({ type: LOGIN_SUCCESS });
+      .signInWithEmailAndPassword(email, password)
+      .then(user => {
+        dispatch({ type: LOGIN_SUCCESS, user });
       })
       .catch(error => {
         dispatch({ type: LOGIN_ERROR, error });

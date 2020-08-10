@@ -33,7 +33,7 @@ const auth = (state = initialState, action) => {
       console.log('login error');
       return {
         ...state,
-        authError: 'Login Error',
+        error: action.error,
       };
     case LOGOUT_SUCCESS:
       console.log('logout success');
