@@ -5,7 +5,7 @@ import { logout } from '../actions/auth';
 const Logout = props => {
   const { logout } = props;
   return (
-    <button className="button" onClick={logout()}>
+    <button className="button" onClick={() => logout()}>
       ログアウト
     </button>
   );
