@@ -18,12 +18,11 @@ export const signUp = (name, email, password) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(user => {
-        dispatch({ type: LOGIN_SUCCESS, user });
-        // const user = firebase.auth().currentUser;
-        // user.updateProfile({
-        //   displayName: name,
-        // });
+      .then(createdUser => {
+        dispatch({ type: LOGIN_SUCCESS, createdUser });
+        createdUser.user.updateProfile({
+          displayName: name,
+        });
       })
       .catch(error => {
         dispatch({ type: LOGIN_ERROR, error });
