@@ -30,7 +30,7 @@ export const signUp = (name, email, password) => {
   };
 };
 
-export const login = (email, password) => {
+export const login = (email, password, callback) => {
   return (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
 
@@ -39,6 +39,7 @@ export const login = (email, password) => {
       .signInWithEmailAndPassword(email, password)
       .then(user => {
         dispatch({ type: LOGIN_SUCCESS, user });
+        callback();
       })
       .catch(error => {
         dispatch({ type: LOGIN_ERROR, error });

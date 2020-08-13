@@ -46,10 +46,13 @@ const Login = props => {
         </div>
       </div>
       <div className="mt-6 has-text-centered">
-        {/* なぜonClick={login(this.state)}と書くとstateが変更されるたびにloginも発動するのか？ */}
         <button
           className="button"
-          onClick={() => login(auth.email, auth.password)}>
+          onClick={() =>
+            login(auth.email, auth.password, () =>
+              props.history.push('/dashboard')
+            )
+          }>
           ログイン
         </button>
       </div>
@@ -61,7 +64,7 @@ const Login = props => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
+  console.log('state', state);
   return {
     auth: state.auth,
   };
@@ -69,7 +72,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   inputValue: (name, value) => dispatch(inputValue(name, value)),
-  login: (email, password) => dispatch(login(email, password)),
+  login: (email, password, callback) =>
+    dispatch(login(email, password, callback)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
