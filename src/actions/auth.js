@@ -13,7 +13,7 @@ export const inputValue = (name, value) => {
   };
 };
 
-export const signUp = (name, email, password) => {
+export const signUp = (name, email, password, callback) => {
   return dispatch => {
     firebase
       .auth()
@@ -23,6 +23,7 @@ export const signUp = (name, email, password) => {
         createdUser.user.updateProfile({
           displayName: name,
         });
+        callback();
       })
       .catch(error => {
         dispatch({ type: LOGIN_ERROR, error });

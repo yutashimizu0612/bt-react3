@@ -13,7 +13,12 @@ const Register = props => {
 
   const registerUser = e => {
     e.preventDefault();
-    signUp(e.target.name.value, e.target.email.value, e.target.password.value);
+    signUp(
+      e.target.name.value,
+      e.target.email.value,
+      e.target.password.value,
+      () => props.history.push('/dashboard')
+    );
     // フォームの値を空にする
     e.target.name.value = '';
     e.target.email.value = '';
@@ -93,11 +98,17 @@ const Register = props => {
   );
 };
 
-const mapStateToProps = state => ({ auth: state.auth });
+const mapStateToProps = state => {
+  console.log('state', state);
+  return {
+    auth: state.auth,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   inputValue: (name, value) => dispatch(inputValue(name, value)),
-  signUp: (name, email, password) => dispatch(signUp(name, email, password)),
+  signUp: (name, email, password, callback) =>
+    dispatch(signUp(name, email, password, callback)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
