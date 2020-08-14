@@ -18,7 +18,7 @@ const Register = props => {
       e.target.name.value,
       e.target.email.value,
       e.target.password.value,
-      () => props.history.push('/dashboard')
+      () => props.history.push('/')
     );
     // フォームの値を空にする
     e.target.name.value = '';
@@ -27,7 +27,7 @@ const Register = props => {
   };
 
   if (auth.isLoggedIn) {
-    return <Redirect to={'/dashboard'} />;
+    return <Redirect to={'/'} />;
   } else {
     return (
       <>

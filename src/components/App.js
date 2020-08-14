@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="content">
       <Router>
-        <Route exact path="/" component={Register}></Route>
+        <Route exact path="/" component={Dashboard}></Route>
         <Route exact path="/login" component={Login}></Route>
-        <Route exact path="/dashboard" component={Dashboard}></Route>
+        <Route exact path="/register" component={Register}></Route>
       </Router>
     </div>
   );

@@ -8,7 +8,7 @@ const Login = props => {
   const { auth, inputValue, login } = props;
 
   if (auth.isLoggedIn) {
-    return <Redirect to={'/dashboard'} />;
+    return <Redirect to={'/'} />;
   } else {
     return (
       <>
@@ -53,9 +53,7 @@ const Login = props => {
           <button
             className="button"
             onClick={() =>
-              login(auth.email, auth.password, () =>
-                props.history.push('/dashboard')
-              )
+              login(auth.email, auth.password, () => props.history.push('/'))
             }>
             ログイン
           </button>
