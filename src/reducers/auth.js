@@ -9,7 +9,6 @@ const initialState = {
   name: '',
   email: '',
   password: '',
-  isLoggedIn: null,
   user: null,
   error: '',
 };
@@ -26,7 +25,6 @@ const auth = (state = initialState, action) => {
       console.log('login success');
       return {
         ...state,
-        isLoggedIn: true,
         user: action.user,
       };
     case LOGIN_ERROR:

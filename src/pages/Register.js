@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { inputValue, signUp } from '../actions/auth.js';
 
 const Register = props => {
-  const { auth, inputValue, signUp } = props;
+  const { auth, firebaseAuth, inputValue, signUp } = props;
 
   const isFormValid = () => {
     const { name, email, password } = auth;
@@ -26,7 +26,7 @@ const Register = props => {
     e.target.password.value = '';
   };
 
-  if (auth.isLoggedIn) {
+  if (firebaseAuth.uid) {
     return <Redirect to={'/'} />;
   } else {
     return (
@@ -108,6 +108,7 @@ const mapStateToProps = state => {
   console.log('state', state);
   return {
     auth: state.auth,
+    firebaseAuth: state.firebase.auth,
   };
 };
 
