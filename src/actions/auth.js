@@ -1,9 +1,6 @@
 import firebase from '../firebase';
 
 export const INPUT_VALUE = 'INPUT_VALUE';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_ERROR = 'LOGIN_ERROR';
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 export const inputValue = (name, value) => {
   return {
@@ -14,19 +11,20 @@ export const inputValue = (name, value) => {
 };
 
 export const signUp = (name, email, password, callback) => {
-  return dispatch => {
+  return () => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(createdUser => {
-        dispatch({ type: LOGIN_SUCCESS, createdUser });
+        console.log('login success');
         createdUser.user.updateProfile({
           displayName: name,
         });
         callback();
       })
       .catch(error => {
-        dispatch({ type: LOGIN_ERROR, error });
+        console.log('login error');
+        console.log(error);
       });
   };
 };
@@ -38,12 +36,13 @@ export const login = (email, password, callback) => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(user => {
-        dispatch({ type: LOGIN_SUCCESS, user });
+      .then(() => {
+        console.log('login success');
         callback();
       })
       .catch(error => {
-        dispatch({ type: LOGIN_ERROR, error });
+        console.log('login error');
+        console.log(error);
       });
   };
 };
@@ -56,7 +55,7 @@ export const logout = () => {
       .auth()
       .signOut()
       .then(() => {
-        dispatch({ type: LOGOUT_SUCCESS });
+        console.log('logout success');
       });
   };
 };
