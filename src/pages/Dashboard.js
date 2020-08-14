@@ -25,9 +25,10 @@ const Dashboard = props => {
         <div className="users">
           <h3 className="title is-5">ユーザ名</h3>
           <ul className="users-list">
+            {/* todo：keyなどは仮 */}
             {users &&
               users.map(user => (
-                <li className="user-item">
+                <li key={user.id} className="user-item">
                   <p className="user-item__name">{user.name}</p>
                   <button className="button is-primary mx-2">
                     walletを見る
