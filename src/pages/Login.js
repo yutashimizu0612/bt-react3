@@ -59,7 +59,7 @@ const Login = props => {
           </button>
         </div>
         <div className="mt-2 has-text-centered">
-          <Link to="/">新規登録はこちらから</Link>
+          <Link to="/register">新規登録はこちらから</Link>
         </div>
       </>
     );
