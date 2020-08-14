@@ -42,7 +42,7 @@ export const login = (email, password, callback) => {
       })
       .catch(error => {
         console.log('login error');
-        console.log(error);
+        console.log(error.message);
       });
   };
 };
