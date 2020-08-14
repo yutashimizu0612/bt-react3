@@ -7,7 +7,7 @@ export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 export const inputValue = (name, value) => {
   return {
-    type: 'INPUT_VALUE',
+    type: INPUT_VALUE,
     name,
     value,
   };
