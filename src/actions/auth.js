@@ -46,16 +46,3 @@ export const login = (email, password, callback) => {
       });
   };
 };
-
-export const logout = () => {
-  return (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase();
-
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        console.log('logout success');
-      });
-  };
-};

@@ -2,7 +2,6 @@ import React from 'react';
 import './Dashboard.css';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Logout from '../components/Logout';
 
 const Dashboard = props => {
   const { users, firebaseAuth } = props;
@@ -12,9 +11,7 @@ const Dashboard = props => {
   } else {
     return (
       <>
-        <div className="mb-6 has-text-right">
-          <Logout />
-        </div>
+        <div className="mb-6 has-text-right">ログアウト</div>
         <div className="status">
           <span>さんようこそ！</span>
           {/* todo：ログインしているユーザの所持金 */}
