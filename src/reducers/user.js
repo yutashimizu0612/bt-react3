@@ -5,8 +5,8 @@ const initialState = {
   ],
 };
 
-const auth = (state = initialState, action) => {
+const user = (state = initialState, action) => {
   return state;
 };
 
-export default auth;
+export default user;
