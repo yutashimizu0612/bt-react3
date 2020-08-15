@@ -16,7 +16,7 @@ const Dashboard = props => {
           <Logout />
         </div>
         <div className="status">
-          <span>{firebaseAuth.displayName}さんようこそ！</span>
+          <span>さんようこそ！</span>
           {/* todo：ログインしているユーザの所持金 */}
           <span>残高：</span>
         </div>
