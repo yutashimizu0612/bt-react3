@@ -66,13 +66,10 @@ const Login = props => {
   }
 };
 
-const mapStateToProps = state => {
-  console.log('state', state);
-  return {
-    auth: state.auth,
-    firebaseAuth: state.firebase.auth,
-  };
-};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  firebaseAuth: state.firebase.auth,
+});
 
 const mapDispatchToProps = dispatch => ({
   inputValue: (name, value) => dispatch(inputValue(name, value)),

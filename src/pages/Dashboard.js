@@ -5,8 +5,7 @@ import { Redirect } from 'react-router-dom';
 import Logout from '../components/Logout';
 
 const Dashboard = props => {
-  const { users, auth, firebaseAuth } = props;
-  console.log(auth);
+  const { users, firebaseAuth } = props;
 
   if (!firebaseAuth.uid) {
     return <Redirect to={'/login'} />;
@@ -45,7 +44,6 @@ const Dashboard = props => {
 
 const mapStateToProps = state => ({
   users: state.user.users,
-  auth: state.auth,
   firebaseAuth: state.firebase.auth,
 });
 
