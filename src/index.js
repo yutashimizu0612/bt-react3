@@ -1,22 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import firebase, { FIREBASE_CONFIG } from './firebase';
-import {
-  ReactReduxFirebaseProvider,
-  getFirebase,
-  isLoaded,
-} from 'react-redux-firebase';
+import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase';
 import reducer from './reducers';
 
 import './index.css';
 import 'bulma/css/bulma.css';
 
 import App from './components/App';
-import Loading from './components/Loading';
+import AuthIsLoaded from './components/AuthIsLoaded';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(
@@ -29,12 +25,6 @@ const rrfProps = {
   config: FIREBASE_CONFIG,
   dispatch: store.dispatch,
 };
-
-function AuthIsLoaded({ children }) {
-  const auth = useSelector(state => state.firebase.auth);
-  if (!isLoaded(auth)) return <Loading />;
-  return children;
-}
 
 ReactDOM.render(
   <Provider store={store}>
