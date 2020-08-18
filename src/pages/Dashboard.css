@@ -1,0 +1,17 @@
+.status {
+  display: flex;
+  justify-content: space-between;
+}
+
+.users-list {
+  margin: 0;
+}
+
+.user-item {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.user-item__name {
+  width: 100%;
+}
