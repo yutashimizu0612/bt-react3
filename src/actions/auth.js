@@ -17,7 +17,6 @@ export const signUp = (name, email, password, callback) => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(createdUser => {
-        console.log(createdUser);
         return db.collection('users').doc(createdUser.user.uid).set({
           name: name,
           possession: 0,
