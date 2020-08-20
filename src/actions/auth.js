@@ -35,9 +35,7 @@ export const signUp = (name, email, password, callback) => {
 };
 
 export const login = (email, password, callback) => {
-  return (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase();
-
+  return () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
