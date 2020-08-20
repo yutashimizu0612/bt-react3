@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import firebase from './firebase';
-import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase';
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase';
 import { createFirestoreInstance } from 'redux-firestore';
 import reducer from './reducers';
 
@@ -16,10 +16,7 @@ import App from './components/App';
 import AuthIsLoaded from './components/AuthIsLoaded';
 import * as serviceWorker from './serviceWorker';
 
-const store = createStore(
-  reducer,
-  composeWithDevTools(applyMiddleware(thunk.withExtraArgument({ getFirebase })))
-);
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 const rrfConfig = {
   userProfile: 'users',
