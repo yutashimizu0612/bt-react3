@@ -27,8 +27,7 @@ export const signUp = (name, email, password, callback) => {
         callback();
       })
       .catch(error => {
-        console.log('signup error');
-        console.log(error);
+        console.log('signup', error);
       });
   };
 };
