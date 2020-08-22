@@ -42,8 +42,21 @@ export const login = (email, password, callback) => {
         callback();
       })
       .catch(error => {
-        console.log('login error');
-        console.log(error.message);
+        console.log('login', error.message);
+      });
+  };
+};
+
+export const logout = () => {
+  return () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        console.log('logout success');
+      })
+      .catch(error => {
+        console.log('logout', error.message);
       });
   };
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import './Dashboard.css';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Logout from '../components/Logout';
 
 const Dashboard = props => {
   const { users } = props;
@@ -11,7 +12,9 @@ const Dashboard = props => {
     <Redirect to={'/login'} />
   ) : (
     <>
-      <div className="mb-6 has-text-right">ログアウト</div>
+      <div className="mb-6 has-text-right">
+        <Logout />
+      </div>
       <div className="status">
         <span>{profile.name}さんようこそ！</span>
         <span>残高：{profile.possession}</span>
