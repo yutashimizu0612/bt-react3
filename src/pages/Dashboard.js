@@ -4,17 +4,17 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 const Dashboard = props => {
-  const { users, firebaseAuth } = props;
+  const { users } = props;
+  const { auth, profile } = props.firebase;
 
-  return !firebaseAuth.uid ? (
+  return !auth.uid ? (
     <Redirect to={'/login'} />
   ) : (
     <>
       <div className="mb-6 has-text-right">ログアウト</div>
       <div className="status">
-        <span>さんようこそ！</span>
-        {/* todo：ログインしているユーザの所持金 */}
-        <span>残高：</span>
+        <span>{profile.name}さんようこそ！</span>
+        <span>残高：{profile.possession}</span>
       </div>
       <h2 className="title is-3 my-6 has-text-centered">ユーザ一覧</h2>
       <div className="users">
@@ -37,7 +37,7 @@ const Dashboard = props => {
 
 const mapStateToProps = state => ({
   users: state.user.users,
-  firebaseAuth: state.firebase.auth,
+  firebase: state.firebase,
 });
 
 export default connect(mapStateToProps, null)(Dashboard);

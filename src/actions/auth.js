@@ -1,4 +1,5 @@
 import firebase from '../firebase';
+import { db } from '../firebase';
 
 export const INPUT_VALUE = 'INPUT_VALUE';
 
@@ -16,23 +17,23 @@ export const signUp = (name, email, password, callback) => {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(createdUser => {
-        console.log('login success');
-        createdUser.user.updateProfile({
-          displayName: name,
+        return db.collection('users').doc(createdUser.user.uid).set({
+          name: name,
+          possession: 0,
         });
+      })
+      .then(() => {
+        console.log('signup success');
         callback();
       })
       .catch(error => {
-        console.log('login error');
-        console.log(error);
+        console.log('signup', error);
       });
   };
 };
 
 export const login = (email, password, callback) => {
-  return (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase();
-
+  return () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
