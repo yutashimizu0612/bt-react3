@@ -2,6 +2,7 @@ import firebase from '../firebase';
 import { db } from '../firebase';
 
 export const INPUT_VALUE = 'INPUT_VALUE';
+export const EMPTY_VALUE = 'EMPTY_VALUE';
 
 export const inputValue = (name, value) => {
   return {
@@ -48,11 +49,12 @@ export const login = (email, password, callback) => {
 };
 
 export const logout = () => {
-  return () => {
+  return dispatch => {
     firebase
       .auth()
       .signOut()
       .then(() => {
+        dispatch({ type: EMPTY_VALUE });
         console.log('logout success');
       })
       .catch(error => {
