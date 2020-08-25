@@ -1,5 +1,5 @@
 import { INPUT_VALUE } from '../actions/auth.js';
-import { EMPTY_VALUE } from '../actions/auth.js';
+import { INITIALIZE_STATE } from '../actions/auth.js';
 
 const initialState = {
   name: '',
@@ -14,11 +14,10 @@ const auth = (state = initialState, action) => {
         ...state,
         [action.name]: action.value,
       };
-    case EMPTY_VALUE:
+    case INITIALIZE_STATE:
       return {
-        name: '',
-        email: '',
-        password: '',
+        ...state,
+        ...initialState,
       };
     default:
       return state;

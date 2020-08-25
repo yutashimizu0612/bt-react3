@@ -2,7 +2,7 @@ import firebase from '../firebase';
 import { db } from '../firebase';
 
 export const INPUT_VALUE = 'INPUT_VALUE';
-export const EMPTY_VALUE = 'EMPTY_VALUE';
+export const INITIALIZE_STATE = 'INITIALIZE_STATE';
 
 export const inputValue = (name, value) => {
   return {
@@ -54,7 +54,7 @@ export const logout = () => {
       .auth()
       .signOut()
       .then(() => {
-        dispatch({ type: EMPTY_VALUE });
+        dispatch({ type: INITIALIZE_STATE });
         console.log('logout success');
       })
       .catch(error => {
