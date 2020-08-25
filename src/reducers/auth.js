@@ -15,7 +15,6 @@ const auth = (state = initialState, action) => {
         [action.name]: action.value,
       };
     case EMPTY_VALUE:
-      console.log('EMPTY_VALUE');
       return {
         name: '',
         email: '',
