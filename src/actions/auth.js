@@ -2,6 +2,7 @@ import firebase from '../firebase';
 import { db } from '../firebase';
 
 export const INPUT_VALUE = 'INPUT_VALUE';
+export const INITIALIZE_STATE = 'INITIALIZE_STATE';
 
 export const inputValue = (name, value) => {
   return {
@@ -42,8 +43,22 @@ export const login = (email, password, callback) => {
         callback();
       })
       .catch(error => {
-        console.log('login error');
-        console.log(error.message);
+        console.log('login', error.message);
+      });
+  };
+};
+
+export const logout = () => {
+  return dispatch => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch({ type: INITIALIZE_STATE });
+        console.log('logout success');
+      })
+      .catch(error => {
+        console.log('logout', error.message);
       });
   };
 };

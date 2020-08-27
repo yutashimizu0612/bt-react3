@@ -1,4 +1,5 @@
 import { INPUT_VALUE } from '../actions/auth.js';
+import { INITIALIZE_STATE } from '../actions/auth.js';
 
 const initialState = {
   name: '',
@@ -12,6 +13,11 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         [action.name]: action.value,
+      };
+    case INITIALIZE_STATE:
+      return {
+        ...state,
+        ...initialState,
       };
     default:
       return state;
