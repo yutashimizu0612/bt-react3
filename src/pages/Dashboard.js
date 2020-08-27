@@ -1,7 +1,10 @@
 import React from 'react';
 import './Dashboard.css';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { firestoreConnect } from 'react-redux-firebase';
+
 import Logout from '../components/Logout';
 
 const Dashboard = props => {
@@ -23,7 +26,6 @@ const Dashboard = props => {
       <div className="users">
         <h3 className="title is-5">ユーザ名</h3>
         <ul className="users-list">
-          {/* todo：keyなどは仮 */}
           {users &&
             users.map(user => (
               <li key={user.id} className="user-item">
@@ -38,9 +40,10 @@ const Dashboard = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  users: state.user.users,
-  firebase: state.firebase,
-});
-
-export default connect(mapStateToProps, null)(Dashboard);
+export default compose(
+  firestoreConnect(() => [{ collection: 'users' }]),
+  connect(state => ({
+    users: state.firestore.ordered.users,
+    firebase: state.firebase,
+  }))
+)(Dashboard);
