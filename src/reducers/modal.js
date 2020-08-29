@@ -9,7 +9,6 @@ const initialState = {
 };
 
 const modal = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case OPEN_WALLET_MODAL:
       return {
