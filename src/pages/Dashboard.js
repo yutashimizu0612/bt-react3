@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 
 import { openWalletModal } from '../actions/modal';
-
 import Logout from '../components/Logout';
 import WalletModal from '../components/WalletModal';
 
