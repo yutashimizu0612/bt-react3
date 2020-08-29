@@ -2,17 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { closeWalletModal } from '../actions/modal';
 import Modal from '@material-ui/core/Modal';
+import './WalletModal.css';
 
 const WalletModal = props => {
   const { closeWalletModal } = props;
   const { name, possession, isOpen } = props.modal;
   return (
     <Modal open={isOpen} onClose={closeWalletModal}>
-      <div className="modal-card">
-        <header className="modal-card-head">
-          <p className="modal-card-title">{name}さんの残高</p>
-        </header>
-        <section className="modal-card-body">{possession}</section>
+      <div className="wallet-modal">
+        <div className="wallet-modal__body">
+          <p className="wallet-modal__name">{name}さんの残高</p>
+          <p className="wallet-modal__possession">{possession}</p>
+        </div>
+        <div className="wallet-modal__bottom">
+          <button className="button is-danger">close</button>
+        </div>
       </div>
     </Modal>
   );
