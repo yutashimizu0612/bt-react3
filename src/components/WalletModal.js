@@ -15,7 +15,11 @@ const WalletModal = props => {
           <p className="wallet-modal__possession">{possession}</p>
         </div>
         <div className="wallet-modal__bottom">
-          <button className="button is-danger">close</button>
+          <button
+            className="button is-danger"
+            onClick={() => closeWalletModal()}>
+            close
+          </button>
         </div>
       </div>
     </Modal>
