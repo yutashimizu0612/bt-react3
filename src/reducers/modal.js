@@ -1,5 +1,4 @@
-import { OPEN_WALLET_MODAL } from '../actions/modal.js';
-import { CLOSE_WALLET_MODAL } from '../actions/modal.js';
+import { OPEN_WALLET_MODAL, CLOSE_WALLET_MODAL } from '../actions/modal';
 
 const initialState = {
   wallet: {
@@ -10,6 +9,7 @@ const initialState = {
 };
 
 const modal = (state = initialState, action) => {
+  console.log(action);
   switch (action.type) {
     case OPEN_WALLET_MODAL:
       return {
@@ -23,9 +23,13 @@ const modal = (state = initialState, action) => {
     case CLOSE_WALLET_MODAL:
       return {
         ...state,
-        ...initialState.wallet,
+        wallet: {
+          ...initialState.wallet,
+          isOpen: false,
+        },
       };
     default:
+      console.log(action.type);
       return state;
   }
 };

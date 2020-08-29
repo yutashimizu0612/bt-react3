@@ -5,10 +5,13 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 
+import { openWalletModal } from '../actions/modal';
+
 import Logout from '../components/Logout';
+import WalletModal from '../components/WalletModal';
 
 const Dashboard = props => {
-  const { users } = props;
+  const { users, openWalletModal } = props;
   const { auth, profile } = props.firebase;
 
   return !auth.uid ? (
@@ -30,20 +33,34 @@ const Dashboard = props => {
             users.map(user => (
               <li key={user.id} className="user-item">
                 <p className="user-item__name">{user.name}</p>
-                <button className="button is-primary mx-2">walletを見る</button>
+                <button
+                  className="button is-primary mx-2"
+                  onClick={() => openWalletModal(user.name, user.possession)}>
+                  walletを見る
+                </button>
                 <button className="button is-primary">送る</button>
               </li>
             ))}
         </ul>
       </div>
+      <WalletModal />
     </>
   );
 };
 
-export default compose(
-  firestoreConnect(() => [{ collection: 'users' }]),
-  connect(state => ({
+const mapStateToProps = state => {
+  return {
     users: state.firestore.ordered.users,
     firebase: state.firebase,
-  }))
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  openWalletModal: (user, possession) =>
+    dispatch(openWalletModal(user, possession)),
+});
+
+export default compose(
+  firestoreConnect(() => [{ collection: 'users' }]),
+  connect(mapStateToProps, mapDispatchToProps)
 )(Dashboard);
