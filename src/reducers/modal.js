@@ -28,7 +28,6 @@ const modal = (state = initialState, action) => {
         },
       };
     default:
-      console.log(action.type);
       return state;
   }
 };
