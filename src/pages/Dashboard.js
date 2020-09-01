@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 
 import { openWalletModal } from '../actions/modal';
+import { sendWallet } from '../actions/user';
 import Logout from '../components/Logout';
 import WalletModal from '../components/WalletModal';
 
@@ -37,7 +38,11 @@ const Dashboard = props => {
                   onClick={() => openWalletModal(user.name, user.possession)}>
                   walletを見る
                 </button>
-                <button className="button is-primary">送る</button>
+                <button
+                  className="button is-primary"
+                  onClick={() => sendWallet()}>
+                  送る
+                </button>
               </li>
             ))}
         </ul>
@@ -57,6 +62,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   openWalletModal: (user, possession) =>
     dispatch(openWalletModal(user, possession)),
+  sendWallet: (targetId, amount, uid) =>
+    dispatch(sendWallet(targetId, amount, uid)),
 });
 
 export default compose(
