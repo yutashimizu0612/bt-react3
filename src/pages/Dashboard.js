@@ -69,22 +69,3 @@ export default compose(
   firestoreConnect(() => [{ collection: 'users' }]),
   connect(mapStateToProps, mapDispatchToProps)
 )(Dashboard);
-
-// const mapStateToProps = state => {
-//   return {
-//     users: state.firestore.ordered.users,
-//     firebase: state.firebase,
-//   };
-// };
-
-// const mapDispatchToProps = dispatch => ({
-//   openWalletModal: (user, possession) =>
-//     dispatch(openWalletModal(user, possession)),
-//   sendWallet: (targetId, amount, uid) =>
-//     dispatch(sendWallet(targetId, amount, uid)),
-// });
-
-// export default compose(
-//   firestoreConnect(() => [{ collection: 'users' }]),
-//   connect(mapStateToProps, mapDispatchToProps)
-// )(Dashboard);
