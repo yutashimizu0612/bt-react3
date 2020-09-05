@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import auth from './auth';
-import user from '.user';
+import user from './user';
 import modal from './modal';
 import { firebaseReducer } from 'react-redux-firebase';
 import { firestoreReducer } from 'redux-firestore';

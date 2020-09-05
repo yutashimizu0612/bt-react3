@@ -1,3 +1,4 @@
+import firebase from '../firebase';
 import { db } from '../firebase';
 
 export const SEND_WALLET_SUCCESS = 'SEND_WALLET_SUCCESS';

@@ -14,6 +14,7 @@ import 'bulma/css/bulma.css';
 
 import App from './components/App';
 import AuthIsLoaded from './components/AuthIsLoaded';
+import MainModal from './components/MainModal';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
@@ -35,6 +36,7 @@ ReactDOM.render(
     <ReactReduxFirebaseProvider {...rrfProps}>
       <AuthIsLoaded>
         <App />
+        <MainModal />
       </AuthIsLoaded>
     </ReactReduxFirebaseProvider>
   </Provider>,
