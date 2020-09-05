@@ -5,13 +5,11 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 
-import { openWalletModal } from '../actions/modal';
-import { sendWallet } from '../actions/user';
+import { openWalletModal, openRemittanceModal } from '../actions/modal';
 import Logout from '../components/Logout';
-import WalletModal from '../components/WalletModal';
 
 const Dashboard = props => {
-  const { users, openWalletModal } = props;
+  const { users, openWalletModal, openRemittanceModal } = props;
   const { auth, profile } = props.firebase;
 
   return !auth.uid ? (
@@ -40,14 +38,15 @@ const Dashboard = props => {
                 </button>
                 <button
                   className="button is-primary"
-                  onClick={() => sendWallet()}>
+                  onClick={() =>
+                    openRemittanceModal(profile.possession, user.id, auth.uid)
+                  }>
                   送る
                 </button>
               </li>
             ))}
         </ul>
       </div>
-      <WalletModal />
     </>
   );
 };
@@ -60,13 +59,32 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  openWalletModal: (user, possession) =>
-    dispatch(openWalletModal(user, possession)),
-  sendWallet: (targetId, amount, uid) =>
-    dispatch(sendWallet(targetId, amount, uid)),
+  openWalletModal: (name, possession) =>
+    dispatch(openWalletModal(name, possession)),
+  openRemittanceModal: (possession, targetId, uid) =>
+    dispatch(openRemittanceModal(possession, targetId, uid)),
 });
 
 export default compose(
   firestoreConnect(() => [{ collection: 'users' }]),
   connect(mapStateToProps, mapDispatchToProps)
 )(Dashboard);
+
+// const mapStateToProps = state => {
+//   return {
+//     users: state.firestore.ordered.users,
+//     firebase: state.firebase,
+//   };
+// };
+
+// const mapDispatchToProps = dispatch => ({
+//   openWalletModal: (user, possession) =>
+//     dispatch(openWalletModal(user, possession)),
+//   sendWallet: (targetId, amount, uid) =>
+//     dispatch(sendWallet(targetId, amount, uid)),
+// });
+
+// export default compose(
+//   firestoreConnect(() => [{ collection: 'users' }]),
+//   connect(mapStateToProps, mapDispatchToProps)
+// )(Dashboard);
