@@ -11,13 +11,15 @@ export const sendWallet = (targetId, amount, uid) => {
         .collection('users')
         .doc(targetId)
         .update({
-          possession: firebase.firestore.FieldValue.increment(amount),
+          possession: firebase.firestore.FieldValue.increment(parseInt(amount)),
         }),
       db
         .collection('users')
         .doc(uid)
         .update({
-          possession: firebase.firestore.FieldValue.increment(-amount),
+          possession: firebase.firestore.FieldValue.increment(
+            parseInt(-amount)
+          ),
         }),
     ])
       .then(() => {
