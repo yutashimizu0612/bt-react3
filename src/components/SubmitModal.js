@@ -16,8 +16,8 @@ export class SubmitModal extends Component {
   }
   canSendMoney = () => {
     const currentAmount = parseInt(this.state.amount);
-    // 入力値が"正の数"かつ"所持金より多い"場合：true
-    return currentAmount > 0 && this.props.possession > currentAmount;
+    // 入力値が"正の数"かつ"所持金より多い"場合に送金可能（true）
+    return 0 < currentAmount < this.props.possession;
   };
   handleChange = e => {
     this.setState({
