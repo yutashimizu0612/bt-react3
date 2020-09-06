@@ -17,7 +17,7 @@ export class SubmitModal extends Component {
   canSendMoney = () => {
     const currentAmount = parseInt(this.state.amount);
     // 入力値が"正の数"かつ"所持金より多い"場合に送金可能（true）
-    return 0 < currentAmount < this.props.possession;
+    return 0 < currentAmount && currentAmount <= this.props.possession;
   };
   handleChange = e => {
     this.setState({
@@ -25,6 +25,7 @@ export class SubmitModal extends Component {
     });
   };
   handleSendWallet = e => {
+    console.log(this.canSendMoney());
     e.preventDefault();
     if (this.canSendMoney()) {
       this.props.sendWallet(
