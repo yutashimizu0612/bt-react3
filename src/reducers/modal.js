@@ -2,6 +2,8 @@ import { OPEN_WALLET_MODAL, CLOSE_MODAL } from '../actions/modal';
 
 const initialState = {
   isOpen: false,
+  text: 'close',
+  buttonFunc: null,
   wallet: {
     name: '',
     possession: null,
@@ -14,6 +16,7 @@ const modal = (state = initialState, action) => {
       return {
         ...state,
         isOpen: !state.isOpen,
+        buttonFunc: action.buttonFunc,
         wallet: {
           name: action.name,
           possession: action.possession,
