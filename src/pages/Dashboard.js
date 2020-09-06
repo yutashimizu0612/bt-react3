@@ -13,8 +13,8 @@ export class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isOpen: false,
-      possession: null,
+      isOpen: false, // SubmitModalの表示非表示
+      possession: null, // ログイン中のユーザの所持金
       targetId: null, // 送金される側のユーザID
       uid: null, // 送金する側のユーザID（ログイン中のユーザ）
     };
