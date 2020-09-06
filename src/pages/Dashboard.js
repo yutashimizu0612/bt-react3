@@ -19,8 +19,8 @@ export class Dashboard extends Component {
       targetId: null, // 送金される側のユーザID
       uid: null, // 送金する側のユーザID（ログイン中のユーザ）
     };
-    this.closeModal = this.closeModal.bind(this);
     this.openSubmitModal = this.openSubmitModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.IsMatchedToLoginUser = this.IsMatchedToLoginUser.bind(this);
   }
 
@@ -33,7 +33,7 @@ export class Dashboard extends Component {
     });
   }
 
-  closeModal() {
+  closeSubmitModal() {
     this.setState({
       isOpen: false,
     });
@@ -99,7 +99,7 @@ export class Dashboard extends Component {
           possession={this.state.possession}
           targetId={this.state.targetId}
           uid={this.state.uid}
-          onClose={this.closeModal}
+          onClose={this.closeSubmitModal}
         />
       </>
     );
