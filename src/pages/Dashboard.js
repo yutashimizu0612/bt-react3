@@ -19,6 +19,7 @@ export class Dashboard extends Component {
       uid: null, // 送金する側のユーザID（ログイン中のユーザ）
     };
     this.closeModal = this.closeModal.bind(this);
+    this.openSubmitModal = this.openSubmitModal.bind(this);
   }
 
   openSubmitModal(possession, targetId, uid) {

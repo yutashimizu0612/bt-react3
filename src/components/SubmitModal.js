@@ -1,35 +1,68 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sendWallet } from '../actions/user';
 import Modal from '@material-ui/core/Modal';
 import './MainModal.css';
 
-const SubmitModal = props => {
-  const { isOpen, targetId, uid, possession, sendWallet, onClose } = props;
-  const handleSendWallet = e => {
-    e.preventDefault();
-    console.log(e.target.amount.value);
-    sendWallet(targetId, e.target.amount.value, uid);
+export class SubmitModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      amount: 0,
+    };
+    this.canSendMoney = this.canSendMoney.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSendWallet = this.handleSendWallet.bind(this);
+  }
+  canSendMoney = () => {
+    const currentAmount = parseInt(this.state.amount);
+    // 入力値が"正の数"かつ"所持金より多い"場合：true
+    return currentAmount > 0 && this.props.possession > currentAmount;
   };
-  return (
-    <Modal open={isOpen} onClose={onClose}>
-      <div className="wallet-modal">
-        <form onSubmit={e => handleSendWallet(e)}>
-          <div className="wallet-modal__body">
-            <p className="wallet-modal__name">あなたの残高：{possession}</p>
-            <p>送る金額</p>
-            <input type="number" name="amount" />
-          </div>
-          <div className="wallet-modal__bottom">
-            <button className="button is-danger" type="submit">
-              送信
-            </button>
-          </div>
-        </form>
-      </div>
-    </Modal>
-  );
-};
+  handleChange = e => {
+    this.setState({
+      amount: e.target.value,
+    });
+  };
+  handleSendWallet = e => {
+    e.preventDefault();
+    if (this.canSendMoney()) {
+      this.props.sendWallet(
+        this.props.targetId,
+        this.state.amount,
+        this.props.uid
+      );
+    }
+  };
+  render() {
+    const { isOpen, possession, onClose } = this.props;
+    return (
+      <Modal open={isOpen} onClose={onClose}>
+        <div className="wallet-modal">
+          <form onSubmit={e => this.handleSendWallet(e)}>
+            <div className="wallet-modal__body">
+              <p className="wallet-modal__name">あなたの残高：{possession}</p>
+              <p>送る金額</p>
+              <input
+                type="number"
+                name="amount"
+                onChange={e => this.handleChange(e)}
+              />
+            </div>
+            <div className="wallet-modal__bottom">
+              <button
+                className="button is-danger"
+                type="submit"
+                disabled={!this.canSendMoney()}>
+                送信
+              </button>
+            </div>
+          </form>
+        </div>
+      </Modal>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
   modal: state.modal,
