@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sendWallet } from '../actions/user';
 import Modal from '@material-ui/core/Modal';
-import './MainModal.css';
+import './CommonModal.css';
 
 export class SubmitModal extends Component {
   constructor(props) {
@@ -38,10 +38,10 @@ export class SubmitModal extends Component {
     const { isOpen, possession, onClose } = this.props;
     return (
       <Modal open={isOpen} onClose={onClose}>
-        <div className="wallet-modal">
+        <div className="common-modal">
           <form onSubmit={e => this.handleSendWallet(e)}>
-            <div className="wallet-modal__body">
-              <p className="wallet-modal__name">あなたの残高：{possession}</p>
+            <div className="common-modal__body">
+              <p className="common-modal__name">あなたの残高：{possession}</p>
               <p>送る金額</p>
               <input
                 type="number"
@@ -49,7 +49,7 @@ export class SubmitModal extends Component {
                 onChange={e => this.handleChange(e)}
               />
             </div>
-            <div className="wallet-modal__bottom">
+            <div className="common-modal__bottom">
               <button
                 className="button is-danger"
                 type="submit"
