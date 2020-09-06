@@ -31,40 +31,6 @@ const SubmitModal = props => {
   );
 };
 
-// import React, { Component } from 'react';
-
-// export class SubmitModal extends Component {
-//   handleSendWallet = e => {
-//     e.preventDefault();
-//     this.props.sendWallet(
-//       this.props.targetId,
-//       e.target.amount.value,
-//       this.props.uid
-//     );
-//   };
-//   render() {
-//     const { isOpen, possession, onClose } = this.props;
-//     return (
-//       <Modal open={isOpen} onClose={onClose}>
-//         <div className="wallet-modal">
-//           <form onSubmit={e => this.handleSendWallet(e)}>
-//             <div className="wallet-modal__body">
-//               <p className="wallet-modal__name">あなたの残高：{possession}</p>
-//               <p>送る金額</p>
-//               <input type="number" name="amount" />
-//             </div>
-//             <div className="wallet-modal__bottom">
-//               <button className="button is-danger" type="submit">
-//                 送信
-//               </button>
-//             </div>
-//           </form>
-//         </div>
-//       </Modal>
-//     );
-//   }
-// }
-
 const mapStateToProps = state => ({
   modal: state.modal,
 });
