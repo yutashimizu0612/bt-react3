@@ -25,7 +25,6 @@ export class SubmitModal extends Component {
     });
   };
   handleSendWallet = e => {
-    console.log(this.canSendMoney());
     e.preventDefault();
     if (this.canSendMoney()) {
       this.props.sendWallet(
