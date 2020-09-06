@@ -32,6 +32,11 @@ export class SubmitModal extends Component {
         this.state.amount,
         this.props.uid
       );
+      // stateとフォームの値を初期値に戻す
+      this.setState({
+        amount: 0,
+      });
+      e.target.amount.value = '';
     }
   };
   render() {
