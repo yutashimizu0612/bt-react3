@@ -20,6 +20,7 @@ export class Dashboard extends Component {
     };
     this.closeModal = this.closeModal.bind(this);
     this.openSubmitModal = this.openSubmitModal.bind(this);
+    this.IsMatchedToLoginUser = this.IsMatchedToLoginUser.bind(this);
   }
 
   openSubmitModal(possession, targetId, uid) {
@@ -35,6 +36,10 @@ export class Dashboard extends Component {
     this.setState({
       isOpen: false,
     });
+  }
+
+  IsMatchedToLoginUser(id) {
+    return this.props.firebase.auth.uid === id;
   }
 
   render() {
@@ -66,6 +71,7 @@ export class Dashboard extends Component {
                   </button>
                   <button
                     className="button is-primary"
+                    disabled={this.IsMatchedToLoginUser(user.id)}
                     onClick={() =>
                       this.openSubmitModal(
                         profile.possession,
