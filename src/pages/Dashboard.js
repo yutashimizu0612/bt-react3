@@ -39,6 +39,7 @@ export class Dashboard extends Component {
   }
 
   IsMatchedToLoginUser(id) {
+    // ログイン中のユーザIDと一致：true
     return this.props.firebase.auth.uid === id;
   }
 
