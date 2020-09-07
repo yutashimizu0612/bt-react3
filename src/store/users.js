@@ -1,11 +1,8 @@
 import firebase from '../firebase';
 import { db } from '../firebase';
 
-export const SEND_WALLET_SUCCESS = 'SEND_WALLET_SUCCESS';
-export const SEND_WALLET_ERROR = 'SEND_WALLET_ERROR';
-
 export const sendWallet = (targetId, amount, uid) => {
-  return dispatch => {
+  return () => {
     Promise.all([
       db
         .collection('users')
@@ -23,10 +20,10 @@ export const sendWallet = (targetId, amount, uid) => {
         }),
     ])
       .then(() => {
-        dispatch({ type: SEND_WALLET_SUCCESS });
+        console.log('sent wallet');
       })
       .catch(error => {
-        dispatch({ type: SEND_WALLET_ERROR, error });
+        console.log('send wallet error', error);
       });
   };
 };

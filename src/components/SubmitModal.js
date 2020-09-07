@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { sendWallet } from '../actions/user';
+import { sendWallet } from '../store/users';
 import Modal from '@material-ui/core/Modal';
 import './CommonModal.css';
 
