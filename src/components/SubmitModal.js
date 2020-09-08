@@ -10,14 +10,19 @@ export class SubmitModal extends Component {
     this.state = {
       amount: 0,
     };
+    this.isPositiveAndLessThanPossession = this.isPositiveAndLessThanPossession.bind(
+      this
+    );
     this.canSendMoney = this.canSendMoney.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSendWallet = this.handleSendWallet.bind(this);
   }
+  isPositiveAndLessThanPossession = amount => {
+    return 0 < amount && amount <= this.props.possession;
+  };
   canSendMoney = () => {
     const currentAmount = parseInt(this.state.amount);
-    // 入力値が"正の数"かつ"所持金より多い"場合に送金可能（true）
-    return 0 < currentAmount && currentAmount <= this.props.possession;
+    return this.isPositiveAndLessThanPossession(currentAmount);
   };
   handleChange = e => {
     this.setState({
