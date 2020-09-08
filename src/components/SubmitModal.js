@@ -25,18 +25,16 @@ export class SubmitModal extends Component {
     });
   };
   handleSendWallet = e => {
-    e.preventDefault();
     if (this.canSendMoney()) {
       this.props.sendWallet(
         this.props.targetId,
         this.state.amount,
         this.props.uid
       );
-      // stateとフォームの値を初期値に戻す
+      // stateの値を初期値に戻す
       this.setState({
         amount: 0,
       });
-      e.target.amount.value = '';
     }
   };
   render() {
@@ -44,25 +42,24 @@ export class SubmitModal extends Component {
     return (
       <Modal open={isOpen} onClose={onClose}>
         <div className="common-modal">
-          <form onSubmit={e => this.handleSendWallet(e)}>
-            <div className="common-modal__body">
-              <p className="common-modal__name">あなたの残高：{possession}</p>
-              <p>送る金額</p>
-              <input
-                type="number"
-                name="amount"
-                onChange={e => this.handleChange(e)}
-              />
-            </div>
-            <div className="common-modal__bottom">
-              <button
-                className="button is-danger"
-                type="submit"
-                disabled={!this.canSendMoney()}>
-                送信
-              </button>
-            </div>
-          </form>
+          <div className="common-modal__body">
+            <p className="common-modal__name">あなたの残高：{possession}</p>
+            <p>送る金額</p>
+            <input
+              type="number"
+              onChange={e => this.handleChange(e)}
+              value={this.state.amount}
+            />
+          </div>
+          <div className="common-modal__bottom">
+            <button
+              className="button is-danger"
+              type="submit"
+              disabled={!this.canSendMoney()}
+              onClick={e => this.handleSendWallet(e)}>
+              送信
+            </button>
+          </div>
         </div>
       </Modal>
     );
