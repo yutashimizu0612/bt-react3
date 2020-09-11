@@ -1,10 +1,12 @@
-import { OPEN_WALLET_MODAL, CLOSE_WALLET_MODAL } from '../actions/modal';
+import { OPEN_WALLET_MODAL, CLOSE_MODAL } from '../actions/modal';
 
 const initialState = {
+  isOpen: false,
+  text: 'close',
+  buttonFunc: null,
   wallet: {
     name: '',
     possession: null,
-    isOpen: false,
   },
 };
 
@@ -13,19 +15,17 @@ const modal = (state = initialState, action) => {
     case OPEN_WALLET_MODAL:
       return {
         ...state,
+        isOpen: !state.isOpen,
+        buttonFunc: action.buttonFunc,
         wallet: {
           name: action.name,
           possession: action.possession,
-          isOpen: !state.wallet.isOpen,
         },
       };
-    case CLOSE_WALLET_MODAL:
+    case CLOSE_MODAL:
       return {
-        ...state,
-        wallet: {
-          ...initialState.wallet,
-          isOpen: false,
-        },
+        isOpen: false,
+        ...initialState,
       };
     default:
       return state;
